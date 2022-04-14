@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import { Vertify } from '@alex_xu/react-slider-vertify';
 
 function App() {
+  const [visible, setVisible] = useState(false);
+  const show = () => {
+    setVisible(true);
+  };
+  const hide = () => {
+    setVisible(false);
+  };
+  const style = {
+    display: 'inline-block',
+    marginRight: '20px',
+    marginBottom: '20px',
+    width: '100px',
+    padding: '5px 20px',
+    color: '#fff',
+    textAlign: 'center',
+    cursor: 'pointer',
+    background: '#1991FA',
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div onClick={show} style={style}>
+        Show
+      </div>
+      <div onClick={hide} style={style}>
+        Hide
+      </div>
+      <Vertify
+        width={320}
+        height={160}
+        visible={visible}
+        onSuccess={() => alert('success')}
+        onFail={() => alert('fail')}
+        onRefresh={() => alert('refresh')}
+      />
     </div>
   );
 }
